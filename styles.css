@@ -275,6 +275,46 @@ a {
     border-radius: 12px;
     overflow: hidden;
     flex-shrink: 0;
+    position: relative;
+}
+
+.opt-badge {
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    background: var(--color-primary);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 99px;
+    letter-spacing: 0.3px;
+}
+
+.services-track {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 4px 20px 16px;
+    margin: 0 -20px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.service-card {
+    flex: 0 0 78%;
+    max-width: 320px;
+    scroll-snap-align: start;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.service-card .vitrine-media {
+    aspect-ratio: 1 / 1;
 }
 
 .catalog-thumb img {
