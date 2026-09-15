@@ -35,18 +35,20 @@ function copyText(text) {
 }
 
 // ========================================
-// PIX - COPIAR CHAVE (Mirelly - demonstrativo)
+// PAGAMENTO ANTECIPADO - vai direto ao WhatsApp (sem copiar PIX)
+// O botão agora é um link <a>, sem JS necessário
 // ========================================
 const pixBtn = document.getElementById('pixBtn');
-const pixKey = 'studioemilyrussel@pix.com.br';
-
-pixBtn.addEventListener('click', () => {
-    copyText(pixKey).then(() => {
-        showToast('Chave PIX copiada! Mencione os 10% off no agendamento ✨');
-    }).catch(() => {
-        showToast('Chave PIX: ' + pixKey);
+if (pixBtn) {
+    const pixKey = 'studioemilyrussel@pix.com.br';
+    pixBtn.addEventListener('click', () => {
+        copyText(pixKey).then(() => {
+            showToast('Chave PIX copiada! Mencione os 10% off no agendamento ✨');
+        }).catch(() => {
+            showToast('Chave PIX: ' + pixKey);
+        });
     });
-});
+}
 
 // ========================================
 // ROLAGEM SUAVE PARA ANCORAS
