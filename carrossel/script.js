@@ -134,3 +134,42 @@ const revealObserver = new IntersectionObserver((entries) => {
 });
 
 revealElements.forEach(el => revealObserver.observe(el));
+
+// ========================================
+// SLIDER INTERNO DO CARD (1 card por tratamento)
+// Seta lateral + automático a cada 3s
+// ========================================
+document.querySelectorAll('.inner-media').forEach((media) => {
+    const track = media.querySelector('.inner-slider');
+    const dots = Array.from(media.querySelectorAll('.inner-dots span'));
+    if (!track) return;
+    const count = track.querySelectorAll('img').length;
+    if (count < 2) return;
+    let idx = 0;
+    let timer = null;
+
+    function go(i, user) {
+        idx = (i + count) % count;
+        track.scrollTo({ left: idx * track.clientWidth, behavior: user ? 'smooth' : 'smooth' });
+        dots.forEach((d, k) => d.classList.toggle('on', k === idx));
+        if (user) restart();
+    }
+    function restart() {
+        if (timer) clearInterval(timer);
+        timer = setInterval(() => go(idx + 1, false), 3000);
+    }
+    const prev = media.querySelector('.inner-prev');
+    const next = media.querySelector('.inner-next');
+    if (prev) prev.addEventListener('click', (e) => { e.stopPropagation(); go(idx - 1, true); });
+    if (next) next.addEventListener('click', (e) => { e.stopPropagation(); go(idx + 1, true); });
+    track.addEventListener('scroll', () => {
+        const i = Math.round(track.scrollLeft / Math.max(1, track.clientWidth));
+        if (i !== idx) {
+            idx = Math.max(0, Math.min(count - 1, i));
+            dots.forEach((d, k) => d.classList.toggle('on', k === idx));
+        }
+    }, { passive: true });
+    track.addEventListener('pointerdown', () => { if (timer) clearInterval(timer); }, { passive: true });
+    track.addEventListener('pointerup', restart, { passive: true });
+    restart();
+});
