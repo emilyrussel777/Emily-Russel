@@ -34,21 +34,7 @@ function copyText(text) {
     });
 }
 
-// ========================================
-// PAGAMENTO ANTECIPADO - vai direto ao WhatsApp (sem copiar PIX)
-// O botão agora é um link <a>, sem JS necessário
-// ========================================
-const pixBtn = document.getElementById('pixBtn');
-if (pixBtn) {
-    const pixKey = 'studioemilyrussel@pix.com.br';
-    pixBtn.addEventListener('click', () => {
-        copyText(pixKey).then(() => {
-            showToast('Chave PIX copiada! Mencione os 10% off no agendamento ✨');
-        }).catch(() => {
-            showToast('Chave PIX: ' + pixKey);
-        });
-    });
-}
+// Sem botão de desconto / sem PIX - agendamento direto no WhatsApp
 
 // ========================================
 // ROLAGEM SUAVE PARA ANCORAS
