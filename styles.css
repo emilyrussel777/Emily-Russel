@@ -780,3 +780,26 @@ body.no-scroll {
         width: calc(100% + 32px);
     }
 }
+
+/* Cliente: só títulos, sem subtítulos */
+.section-title p {
+    display: none;
+}
+
+.section-title h2 {
+    font-size: 30px;
+}
+
+.vitrine-card p,
+.catalog-info p {
+    display: none;
+}
+
+.vitrine-card h3 {
+    font-size: 17px;
+    padding-bottom: 14px;
+}
+
+.catalog-info h3 {
+    font-size: 17px;
+}
